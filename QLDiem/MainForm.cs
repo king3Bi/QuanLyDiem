@@ -18,30 +18,43 @@ namespace QLDiem
             InitializeComponent();
         }
 
+        // Mở form khoa
         private void button_formKhoa_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormKhoa formKhoa = new FormKhoa();
-            formKhoa.Show();
+            formKhoa.ShowDialog();
+            this.Show();
         }
 
+        // Mở form sinh viên
         private void button_formSinhVien_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormSinhVien formSinhVien = new FormSinhVien();
-            formSinhVien.Show();
+            formSinhVien.ShowDialog();
+            this.Show();
         }
 
+        // Mở form môn học
         private void button_MonHoc_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormMonHoc formMonHoc = new FormMonHoc();
-            formMonHoc.Show();
+            formMonHoc.ShowDialog();
+            this.Show();
         }
 
+        // Mở form kết quả
         private void button_formKetQua_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormKetQua formKetQua = new FormKetQua();
-            formKetQua.Show();
+            formKetQua.ShowDialog();
+            this.Show();
         }
 
+        // Thoát
         private void button_thoat_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -49,6 +62,7 @@ namespace QLDiem
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Thiết lập kết nối với csdl để để tránh mất nhiều thời gian load dữ liệu khi mở các form lần đầu lên
             using (ModelQLD modelQLD=new ModelQLD())
             {
                 modelQLD.Khoas.ToList();
