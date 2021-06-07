@@ -23,27 +23,73 @@ namespace QLDiem
 
         private void FormSinhVien_Load(object sender, EventArgs e)
         {
-            loadData();
-            dateTimePicker_NgaySinh.CustomFormat = " ";
-            panel_inp.Enabled = false;
+            loadDataToDgv();
+            loadDataToCmbMaK();
+            clear();
+            block_status();
+
+            // Mặc định mã số sinh viên không thể sửa
             textBox_MaSV.Enabled = false;
         }
 
         private void loadData()
         {
-            dataGridView1.AutoGenerateColumns = false;
+            
             using (ModelQLD modelQLD = new ModelQLD())
             {
                 comboBox_MaK.DisplayMember = "TenKhoa";
                 comboBox_MaK.ValueMember = "MaK";
                 comboBox_MaK.DataSource = modelQLD.Khoas.ToList();
-                comboBox_MaK.SelectedIndex = -1;
+                comboBox_MaK.SelectedIndex = -1;    // lỗi
 
                 dataGridView1.DataSource = modelQLD.SinhViens.ToList();
                 (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).DisplayMember = "TenKhoa";
                 (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).ValueMember = "MaK";
                 (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).DataSource = modelQLD.Khoas.ToList();
             }
+        }
+
+        private void loadDataToDgv()
+        {
+            dataGridView1.AutoGenerateColumns = false;
+            using (ModelQLD modelQLD = new ModelQLD())
+            {
+                dataGridView1.DataSource = modelQLD.SinhViens.ToList();
+                (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).DisplayMember = "TenKhoa";
+                (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).ValueMember = "MaK";
+                (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).DataSource = modelQLD.Khoas.ToList();
+            }
+        }
+
+        private void loadDataToCmbMaK()
+        {
+            using (ModelQLD modelQLD = new ModelQLD())
+            {
+                comboBox_MaK.DisplayMember = "TenKhoa";
+                comboBox_MaK.ValueMember = "MaK";
+                comboBox_MaK.DataSource = modelQLD.Khoas.ToList();
+                comboBox_MaK.SelectedIndex = -1;    // lỗi
+            }
+        }
+
+        // Khóa panel inp không cho nhập dữ liệu
+        private void block_status()
+        {
+            panel_inp.Enabled = false;
+        }
+
+        // Mở khóa panel inp
+        private void un_block_status()
+        {
+            panel_inp.Enabled = true;
+        }
+
+        // Xóa các dữ liệu trên panel_inp
+        private void clear()
+        {
+            textBox_MaSV.Text = textBox_HoVaTen.Text = "";
+            comboBox_MaK.SelectedIndex = comboBox_Phai.SelectedIndex = -1;
+            dateTimePicker_NgaySinh.CustomFormat = " ";
         }
 
         private void button_thoat_Click(object sender, EventArgs e)
@@ -71,10 +117,7 @@ namespace QLDiem
 
         private void button_them_Click(object sender, EventArgs e)
         {
-            if (panel_inp.Enabled == false)
-            {
-                panel_inp.Enabled = true;
-            }
+            un_block_status();
 
             if (status == 0)
             {
@@ -100,12 +143,12 @@ namespace QLDiem
                     int eror = modelQLD.SaveChanges();
                     if (eror == 1)
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Thêm thành công");
                     }
                     else
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Thêm bị lỗi");
                     }
                 }
@@ -123,12 +166,12 @@ namespace QLDiem
                     int eror = modelQLD.SaveChanges();
                     if (eror == 1)
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Sửa thành công");
                     }
                     else
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Sửa bị lỗi");
                     }
                 }
@@ -143,10 +186,7 @@ namespace QLDiem
                 button_them.Text = "Thêm";
                 button_sua.Text = "Sửa";
                 button_xoa.Visible = true;
-                if (panel_inp.Enabled == true)
-                {
-                    panel_inp.Enabled = false;
-                }
+                block_status();
             }
             else
             if (status == 0)
@@ -156,10 +196,7 @@ namespace QLDiem
                 button_sua.Text = "Hủy";
                 button_xoa.Visible = false;
 
-                if (panel_inp.Enabled == false)
-                {
-                    panel_inp.Enabled = true;
-                }
+                un_block_status();
             }
         }
 
@@ -181,17 +218,18 @@ namespace QLDiem
                     int eror = modelQLD.SaveChanges();
                     if (eror == 1)
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Xóa thành công");
                     }
                     else
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Xóa bị lỗi");
                     }
                 }
 
             }
         }
+
     }
 }

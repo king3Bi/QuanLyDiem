@@ -24,6 +24,7 @@ namespace QLDiem
         private void FormKetQua_Load(object sender, EventArgs e)
         {
             loadData();
+            panel_inp.Enabled = false;
         }
 
         private void loadData()
