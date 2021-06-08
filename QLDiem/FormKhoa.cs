@@ -75,6 +75,7 @@ namespace QLDiem
             {
                 status = 1;
                 textBox_MaK.Text = textBox_TenKhoa.Text = "";
+                label_status.Text = "Thêm";
                 button_them.Text = "Lưu";
                 button_sua.Text = "Hủy";
                 button_xoa.Visible = false;
@@ -128,7 +129,8 @@ namespace QLDiem
                 button_them.Text = "Thêm";
                 button_sua.Text = "Sửa";
                 button_xoa.Visible = true;
-                if(panel_inp.Enabled==true)
+                label_status.Text = "";
+                if (panel_inp.Enabled==true)
                 {
                     panel_inp.Enabled = false;
                 }
@@ -137,6 +139,7 @@ namespace QLDiem
             if(status==0)
             {
                 status = 2;
+                label_status.Text = "Sửa";
                 button_them.Text = "Lưu";
                 button_sua.Text = "Hủy";
                 button_xoa.Visible = false;
@@ -172,6 +175,26 @@ namespace QLDiem
                 }
                     
             }    
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            button1.ForeColor = Color.Red;
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            button1.ForeColor = Color.White;
+        }
+
+        private void panel_inp_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

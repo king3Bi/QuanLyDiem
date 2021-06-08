@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QLDiem.EF;
@@ -55,9 +56,11 @@ namespace QLDiem
         }
 
         // Thoát
-        private void button_thoat_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //label1.BackColor = Color.Red;
+            //Thread.Sleep(1000);
+            //this.Close();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -70,6 +73,21 @@ namespace QLDiem
                 modelQLD.MonHocs.ToList();
                 modelQLD.KetQuas.ToList();
             }
+        }
+
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            button1.ForeColor = Color.Red;
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            button1.ForeColor = Color.White;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
