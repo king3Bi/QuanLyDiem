@@ -96,7 +96,7 @@ namespace QLDiem
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowHeadersWidth = 25;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 30;
             this.dataGridView1.Size = new System.Drawing.Size(684, 273);
@@ -173,12 +173,12 @@ namespace QLDiem
             // 
             // comboBox_MaK
             // 
-            this.comboBox_MaK.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_MaK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_MaK.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.comboBox_MaK.FormattingEnabled = true;
             this.comboBox_MaK.Location = new System.Drawing.Point(550, 50);
             this.comboBox_MaK.Name = "comboBox_MaK";
-            this.comboBox_MaK.Size = new System.Drawing.Size(237, 27);
+            this.comboBox_MaK.Size = new System.Drawing.Size(237, 28);
             this.comboBox_MaK.TabIndex = 4;
             // 
             // dateTimePicker_NgaySinh
@@ -186,7 +186,7 @@ namespace QLDiem
             this.dateTimePicker_NgaySinh.CalendarForeColor = System.Drawing.SystemColors.InfoText;
             this.dateTimePicker_NgaySinh.CalendarTitleForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.dateTimePicker_NgaySinh.CalendarTrailingForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.dateTimePicker_NgaySinh.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker_NgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker_NgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_NgaySinh.Location = new System.Drawing.Point(550, 11);
             this.dateTimePicker_NgaySinh.MinDate = new System.DateTime(1930, 1, 1, 0, 0, 0, 0);
@@ -197,7 +197,7 @@ namespace QLDiem
             // 
             // comboBox_Phai
             // 
-            this.comboBox_Phai.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_Phai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Phai.ForeColor = System.Drawing.SystemColors.InfoText;
             this.comboBox_Phai.FormattingEnabled = true;
             this.comboBox_Phai.Items.AddRange(new object[] {
@@ -205,12 +205,12 @@ namespace QLDiem
             "Nữ"});
             this.comboBox_Phai.Location = new System.Drawing.Point(181, 85);
             this.comboBox_Phai.Name = "comboBox_Phai";
-            this.comboBox_Phai.Size = new System.Drawing.Size(185, 27);
+            this.comboBox_Phai.Size = new System.Drawing.Size(185, 28);
             this.comboBox_Phai.TabIndex = 2;
             // 
             // textBox_HoVaTen
             // 
-            this.textBox_HoVaTen.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_HoVaTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_HoVaTen.ForeColor = System.Drawing.SystemColors.InfoText;
             this.textBox_HoVaTen.Location = new System.Drawing.Point(109, 49);
             this.textBox_HoVaTen.Name = "textBox_HoVaTen";
@@ -219,7 +219,7 @@ namespace QLDiem
             // 
             // textBox_MaSV
             // 
-            this.textBox_MaSV.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_MaSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_MaSV.ForeColor = System.Drawing.SystemColors.InfoText;
             this.textBox_MaSV.Location = new System.Drawing.Point(109, 11);
             this.textBox_MaSV.Name = "textBox_MaSV";

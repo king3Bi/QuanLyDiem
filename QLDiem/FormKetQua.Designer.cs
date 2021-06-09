@@ -153,7 +153,7 @@ namespace QLDiem
             // 
             // textBox_Diem
             // 
-            this.textBox_Diem.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Diem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Diem.Location = new System.Drawing.Point(175, 167);
             this.textBox_Diem.Name = "textBox_Diem";
             this.textBox_Diem.Size = new System.Drawing.Size(221, 27);

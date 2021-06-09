@@ -94,20 +94,20 @@ namespace QLDiem
                 modelQLD.KetQuas.ToList();
             }
         }
-
-        // Đóng ứng dụng
+        
+        // Khi con trỏ chuột ở trên button
         private void button_thoat_MouseEnter(object sender, EventArgs e)
         {
             button_thoat.ForeColor = Color.Red;
         }
 
-        // Khi con trỏ chuột ở trên button
+        // Khi con trỏ chuột rời khỏi button
         private void button_thoat_MouseLeave(object sender, EventArgs e)
         {
             button_thoat.ForeColor = Color.White;
         }
 
-        // Khi con trỏ chuột rời khỏi button
+        // Đóng ứng dụng
         private void button_thoat_Click(object sender, EventArgs e)
         {
             this.Close();

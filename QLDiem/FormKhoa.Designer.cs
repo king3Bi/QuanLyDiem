@@ -136,7 +136,7 @@ namespace QLDiem
             // 
             // textBox_TenKhoa
             // 
-            this.textBox_TenKhoa.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_TenKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_TenKhoa.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.textBox_TenKhoa.Location = new System.Drawing.Point(162, 128);
             this.textBox_TenKhoa.Name = "textBox_TenKhoa";
@@ -146,7 +146,7 @@ namespace QLDiem
             // textBox_MaK
             // 
             this.textBox_MaK.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_MaK.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_MaK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_MaK.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.textBox_MaK.Location = new System.Drawing.Point(162, 63);
             this.textBox_MaK.Name = "textBox_MaK";

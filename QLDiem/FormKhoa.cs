@@ -82,7 +82,7 @@ namespace QLDiem
             {
                 return true;
             }
-            MessageBox.Show("Chưa có đối tượng dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Chưa chọn đối tượng dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
@@ -125,6 +125,7 @@ namespace QLDiem
             // Nếu ở trang thái ban đầu
             if(status==0)
             {
+                // Lúc này button thêm mang chức năng thêm
                 // cập nhật trạng thái về trạng thái thêm
                 status = 1;
                 clear();
@@ -138,27 +139,43 @@ namespace QLDiem
             // Nếu ở trạng thái thêm
             else if(status==1 && check_panel_inp())
             {
+                // Lúc này button thêm mang chức năng lưu ở trạng thái thêm
                 // thực hiện insert dữ liệu lên database
+
+                // tạo mới một object Khoa
                 modelKhoa = new Khoa();
+
+
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
+                    // Gán dữ liệu cho object
                     modelKhoa.TenKhoa = textBox_TenKhoa.Text.Trim().ToString();
                     modelKhoa.MaK = 0;
+
+                    // Thêm object vào tập thực thể
                     modelQLD.Khoas.Add(modelKhoa);
+
+                    // Đưa dữ liệu xuống database
                     int eror = modelQLD.SaveChanges();
 
                     // Thêm thành công
                     if(eror==1)
                     {
+                        // Load lại data
                         loadData();
-                        MessageBox.Show("Thêm thành công");
+
+                        // Thông báo ra màn hình
+                        MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     // Thêm bị lỗi
                     else
                     {
+                        // Load lại data
                         loadData();
-                        MessageBox.Show("Thêm bị lỗi");
+
+                        // Thông báo ra màn hình
+                        MessageBox.Show("Thêm bị lỗi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -166,30 +183,47 @@ namespace QLDiem
             // Nếu ở trạng thái sửa
             else if(status==2 && check_exist_ob() && check_panel_inp())
             {
+                // Lúc này button thêm mang chức năng lưu ở trạng thái sửa
                 // Thực hiện update dữ liệu lên database
                 using (ModelQLD modelQLD=new ModelQLD())
                 {
+                    // Gán dữ liệu cho object
                     modelKhoa.TenKhoa = textBox_TenKhoa.Text.Trim().ToString();
+
+                    // Cập nhật lại dữ liệu trong tập thưc thể
                     modelQLD.Entry(modelKhoa).State = System.Data.Entity.EntityState.Modified;
+
+                    // Đưa dữ liệu xuống database
                     int eror = modelQLD.SaveChanges();
+
+                    // Sửa thành công
                     if(eror==1)
                     {
+                        // Load lại data
                         loadData();
-                        MessageBox.Show("Sửa thành công");
+
+                        // Thông báo ra màn hình
+                        MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
+                    // Sửa bị lỗi
                     else
                     {
                         loadData();
-                        MessageBox.Show("Sửa bị lỗi");
+                        MessageBox.Show("Sửa bị lỗi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
         }
 
+        // Sự kiện click button sửa
         private void button_sua_Click(object sender, EventArgs e)
         {
+            // Nếu là trạng thái thêm hoặc sửa
             if(status==1 || status==2)
             {
+                // Lúc này, nút thêm mang chức năng hủy
+                // Đưa trạng thái về trạng thái ban đầu
                 status = 0;
                 button_them.Text = "Thêm";
                 button_sua.Text = "Sửa";
@@ -199,8 +233,12 @@ namespace QLDiem
                 block_status();
             }
             else
+
+            // Nếu là trạng thái ban đầu
             if(status==0)
             {
+                // Lúc này button sửa mang chức năng sửa
+                // Đưa về trạng thái sửa
                 status = 2;
                 label_status.Text = "Sửa";
                 button_them.Text = "Lưu";
@@ -211,29 +249,47 @@ namespace QLDiem
             }    
         }
 
+        // Sự kiện click button xóa
         private void button_xoa_Click(object sender, EventArgs e)
         {
+            // Hỏi lại trước khi xóa
             if(MessageBox.Show("Bạn có chắc chắn xóa?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)==DialogResult.Yes)
             {
                 using (ModelQLD modelQLD=new ModelQLD())
                 {
+                    // Kiểm tra xem object có tồn tại không
                     if(check_exist_ob())
                     {
+                        // xóa objcet trong tập thực thể
                         var entry = modelQLD.Entry(modelKhoa);
                         if (entry.State == System.Data.Entity.EntityState.Detached)
                             modelQLD.Khoas.Attach(modelKhoa);
                         modelQLD.Khoas.Remove(modelKhoa);
+
+                        // Đưa dữ liệu xuống database
                         int eror = modelQLD.SaveChanges();
+
+                        // Xóa thành công
                         if (eror == 1)
                         {
+                            // Load lại data
                             loadData();
+
+                            // clear panel_inp và đưa object về null
                             clear();
-                            MessageBox.Show("Xóa thành công");
+
+                            // Thông báo
+                            MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
+
+                        // Xóa không thành công
                         else
                         {
+                            // Load lại data
                             loadData();
-                            MessageBox.Show("Xóa bị lỗi");
+
+                            // Thông báo
+                            MessageBox.Show("Xóa bị lỗi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -241,16 +297,19 @@ namespace QLDiem
             }    
         }
 
+        // Khi con trỏ chuột ở trên button
         private void button_thoat_MouseEnter(object sender, EventArgs e)
         {
             button_thoat.ForeColor = Color.Red;
         }
 
+        // Khi con trỏ chuột rời khỏi button
         private void button_thoat_MouseLeave(object sender, EventArgs e)
         {
             button_thoat.ForeColor = Color.White;
         }
 
+        // Đóng cửa formKhoa
         private void button_thoat_Click(object sender, EventArgs e)
         {
             this.Close();
