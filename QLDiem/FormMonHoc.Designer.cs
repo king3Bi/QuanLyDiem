@@ -38,6 +38,7 @@ namespace QLDiem
             this.button_sua = new System.Windows.Forms.Button();
             this.button_them = new System.Windows.Forms.Button();
             this.panel_inp = new System.Windows.Forms.Panel();
+            this.label_status = new System.Windows.Forms.Label();
             this.textBox_SoTinChi = new System.Windows.Forms.TextBox();
             this.textBox_TenMH = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,7 +51,7 @@ namespace QLDiem
             this.SoTinChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_thoat = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
@@ -111,6 +112,7 @@ namespace QLDiem
             // 
             // panel_inp
             // 
+            this.panel_inp.Controls.Add(this.label_status);
             this.panel_inp.Controls.Add(this.textBox_SoTinChi);
             this.panel_inp.Controls.Add(this.textBox_TenMH);
             this.panel_inp.Controls.Add(this.label3);
@@ -121,6 +123,15 @@ namespace QLDiem
             this.panel_inp.Name = "panel_inp";
             this.panel_inp.Size = new System.Drawing.Size(407, 245);
             this.panel_inp.TabIndex = 4;
+            // 
+            // label_status
+            // 
+            this.label_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_status.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label_status.Location = new System.Drawing.Point(6, 14);
+            this.label_status.Name = "label_status";
+            this.label_status.Size = new System.Drawing.Size(65, 33);
+            this.label_status.TabIndex = 2;
             // 
             // textBox_SoTinChi
             // 
@@ -209,7 +220,7 @@ namespace QLDiem
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowHeadersWidth = 25;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -247,7 +258,7 @@ namespace QLDiem
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button_thoat);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -269,24 +280,24 @@ namespace QLDiem
             this.pictureBox4.TabIndex = 13;
             this.pictureBox4.TabStop = false;
             // 
-            // button1
+            // button_thoat
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Menu;
-            this.button1.Location = new System.Drawing.Point(1070, -6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 38);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
-            this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
+            this.button_thoat.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.button_thoat.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_thoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_thoat.ForeColor = System.Drawing.SystemColors.Menu;
+            this.button_thoat.Location = new System.Drawing.Point(1070, -6);
+            this.button_thoat.Name = "button_thoat";
+            this.button_thoat.Size = new System.Drawing.Size(33, 38);
+            this.button_thoat.TabIndex = 4;
+            this.button_thoat.Text = "X";
+            this.button_thoat.UseVisualStyleBackColor = false;
+            this.button_thoat.Click += new System.EventHandler(this.button_thoat_Click);
+            this.button_thoat.MouseEnter += new System.EventHandler(this.button_thoat_MouseEnter);
+            this.button_thoat.MouseLeave += new System.EventHandler(this.button_thoat_MouseLeave);
             // 
             // label5
             // 
@@ -361,7 +372,8 @@ namespace QLDiem
         private System.Windows.Forms.DataGridViewTextBoxColumn MaMH;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenMH;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoTinChi;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_thoat;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label_status;
     }
 }

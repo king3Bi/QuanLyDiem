@@ -34,6 +34,11 @@ namespace QLDiem
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSinhVien));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.MaSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoVaTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phai = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaK = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.panel_inp = new System.Windows.Forms.Panel();
             this.comboBox_MaK = new System.Windows.Forms.ComboBox();
             this.dateTimePicker_NgaySinh = new System.Windows.Forms.DateTimePicker();
@@ -50,15 +55,10 @@ namespace QLDiem
             this.button_xoa = new System.Windows.Forms.Button();
             this.button_them = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_thoat = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.MaSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoVaTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phai = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaK = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel_inp.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -95,13 +95,64 @@ namespace QLDiem
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowHeadersWidth = 25;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 30;
             this.dataGridView1.Size = new System.Drawing.Size(684, 273);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // MaSV
+            // 
+            this.MaSV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MaSV.DataPropertyName = "MaSV";
+            this.MaSV.FillWeight = 50F;
+            this.MaSV.HeaderText = "MSSV";
+            this.MaSV.MinimumWidth = 6;
+            this.MaSV.Name = "MaSV";
+            this.MaSV.ReadOnly = true;
+            // 
+            // HoVaTen
+            // 
+            this.HoVaTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.HoVaTen.DataPropertyName = "HoVaTen";
+            this.HoVaTen.HeaderText = "Họ tên";
+            this.HoVaTen.MinimumWidth = 6;
+            this.HoVaTen.Name = "HoVaTen";
+            // 
+            // Phai
+            // 
+            this.Phai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Phai.DataPropertyName = "Phai";
+            this.Phai.FillWeight = 50F;
+            this.Phai.HeaderText = "Phái";
+            this.Phai.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this.Phai.MinimumWidth = 6;
+            this.Phai.Name = "Phai";
+            this.Phai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Phai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // NgaySinh
+            // 
+            this.NgaySinh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NgaySinh.DataPropertyName = "NgaySinh";
+            this.NgaySinh.FillWeight = 70F;
+            this.NgaySinh.HeaderText = "Ngày sinh";
+            this.NgaySinh.MinimumWidth = 6;
+            this.NgaySinh.Name = "NgaySinh";
+            // 
+            // MaK
+            // 
+            this.MaK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MaK.DataPropertyName = "MaK";
+            this.MaK.HeaderText = "Khoa";
+            this.MaK.MinimumWidth = 6;
+            this.MaK.Name = "MaK";
+            this.MaK.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MaK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // panel_inp
             // 
@@ -283,14 +334,46 @@ namespace QLDiem
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button_thoat);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1100, 60);
             this.panel1.TabIndex = 7;
+            // 
+            // button_thoat
+            // 
+            this.button_thoat.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.button_thoat.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_thoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_thoat.ForeColor = System.Drawing.SystemColors.Window;
+            this.button_thoat.Location = new System.Drawing.Point(1070, -8);
+            this.button_thoat.Name = "button_thoat";
+            this.button_thoat.Size = new System.Drawing.Size(33, 38);
+            this.button_thoat.TabIndex = 6;
+            this.button_thoat.Text = "X";
+            this.button_thoat.UseVisualStyleBackColor = false;
+            this.button_thoat.Click += new System.EventHandler(this.button_thoat_Click);
+            this.button_thoat.MouseEnter += new System.EventHandler(this.button_thoat_MouseEnter);
+            this.button_thoat.MouseLeave += new System.EventHandler(this.button_thoat_MouseLeave);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = global::QLDiem.Properties.Resources.graduated__1_;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(35, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 55);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // label6
             // 
@@ -315,86 +398,6 @@ namespace QLDiem
             this.label8.Size = new System.Drawing.Size(279, 26);
             this.label8.TabIndex = 8;
             this.label8.Text = "DANH SÁCH SINH VIÊN";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = global::QLDiem.Properties.Resources.graduated__1_;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(35, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 55);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
-            // MaSV
-            // 
-            this.MaSV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MaSV.DataPropertyName = "MaSV";
-            this.MaSV.HeaderText = "MSSV";
-            this.MaSV.MinimumWidth = 6;
-            this.MaSV.Name = "MaSV";
-            this.MaSV.ReadOnly = true;
-            // 
-            // HoVaTen
-            // 
-            this.HoVaTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.HoVaTen.DataPropertyName = "HoVaTen";
-            this.HoVaTen.HeaderText = "Họ tên";
-            this.HoVaTen.MinimumWidth = 6;
-            this.HoVaTen.Name = "HoVaTen";
-            // 
-            // Phai
-            // 
-            this.Phai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Phai.DataPropertyName = "Phai";
-            this.Phai.HeaderText = "Phái";
-            this.Phai.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ"});
-            this.Phai.MinimumWidth = 6;
-            this.Phai.Name = "Phai";
-            this.Phai.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Phai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // NgaySinh
-            // 
-            this.NgaySinh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NgaySinh.DataPropertyName = "NgaySinh";
-            this.NgaySinh.HeaderText = "Ngày sinh";
-            this.NgaySinh.MinimumWidth = 6;
-            this.NgaySinh.Name = "NgaySinh";
-            // 
-            // MaK
-            // 
-            this.MaK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MaK.DataPropertyName = "MaK";
-            this.MaK.HeaderText = "Khoa";
-            this.MaK.MinimumWidth = 6;
-            this.MaK.Name = "MaK";
-            this.MaK.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MaK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Window;
-            this.button1.Location = new System.Drawing.Point(1070, -8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 38);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
-            this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // FormSinhVien
             // 
@@ -447,11 +450,11 @@ namespace QLDiem
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button_thoat;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaSV;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoVaTen;
         private System.Windows.Forms.DataGridViewComboBoxColumn Phai;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgaySinh;
         private System.Windows.Forms.DataGridViewComboBoxColumn MaK;
-        private System.Windows.Forms.Button button1;
     }
 }

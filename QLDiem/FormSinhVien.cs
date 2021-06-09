@@ -32,23 +32,6 @@ namespace QLDiem
             textBox_MaSV.Enabled = false;
         }
 
-        private void loadData()
-        {
-            
-            using (ModelQLD modelQLD = new ModelQLD())
-            {
-                comboBox_MaK.DisplayMember = "TenKhoa";
-                comboBox_MaK.ValueMember = "MaK";
-                comboBox_MaK.DataSource = modelQLD.Khoas.ToList();
-                comboBox_MaK.SelectedIndex = -1;    // lỗi
-
-                dataGridView1.DataSource = modelQLD.SinhViens.ToList();
-                (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).DisplayMember = "TenKhoa";
-                (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).ValueMember = "MaK";
-                (dataGridView1.Columns["MaK"] as DataGridViewComboBoxColumn).DataSource = modelQLD.Khoas.ToList();
-            }
-        }
-
         private void loadDataToDgv()
         {
             dataGridView1.AutoGenerateColumns = false;
@@ -90,11 +73,7 @@ namespace QLDiem
             textBox_MaSV.Text = textBox_HoVaTen.Text = "";
             comboBox_MaK.SelectedIndex = comboBox_Phai.SelectedIndex = -1;
             dateTimePicker_NgaySinh.CustomFormat = " ";
-        }
-
-        private void button_thoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            modelSinhVien = null;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -106,31 +85,64 @@ namespace QLDiem
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
                     modelSinhVien = modelQLD.SinhViens.Where(x => x.MaSV == ID).FirstOrDefault();
-                    textBox_MaSV.Text = modelSinhVien.MaSV.ToString();
-                    textBox_HoVaTen.Text = modelSinhVien.HoVaTen.ToString();
-                    comboBox_Phai.SelectedItem = modelSinhVien.Phai.ToString();
-                    dateTimePicker_NgaySinh.Value = modelSinhVien.NgaySinh;
-                    comboBox_MaK.SelectedValue = modelSinhVien.MaK;
+                    dataBindingPanel_inp();
                 }
             }
         }
 
+        private void dataBindingPanel_inp()
+        {
+            if (status == 1)
+            {
+                textBox_MaSV.Text = "";
+            }
+            else
+            {
+                textBox_MaSV.Text = modelSinhVien.MaSV.ToString();
+            }
+            textBox_HoVaTen.Text = modelSinhVien.HoVaTen.ToString();
+            comboBox_Phai.SelectedItem = modelSinhVien.Phai.ToString();
+            dateTimePicker_NgaySinh.Value = modelSinhVien.NgaySinh;
+            comboBox_MaK.SelectedValue = modelSinhVien.MaK;
+        }
+
+        private bool check_panel_inp()
+        {
+            if (textBox_HoVaTen.Text != "" &&
+                comboBox_Phai.SelectedIndex!=-1 &&
+                comboBox_MaK.SelectedIndex!=-1 &&
+                dateTimePicker_NgaySinh.CustomFormat!=" ")
+            {
+                return true;
+            }
+            MessageBox.Show("Nhập thiếu dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
+        private bool check_exist_ob()
+        {
+            if (modelSinhVien != null)
+            {
+                return true;
+            }
+            MessageBox.Show("Chưa có đối tượng dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
         private void button_them_Click(object sender, EventArgs e)
         {
-            un_block_status();
-
             if (status == 0)
             {
                 status = 1;
-                textBox_MaSV.Text = textBox_HoVaTen.Text = "";
-                comboBox_Phai.SelectedIndex = comboBox_MaK.SelectedIndex = -1;
-                dateTimePicker_NgaySinh.CustomFormat = " ";
+                clear();
                 button_them.Text = "Lưu";
                 button_sua.Text = "Hủy";
+                un_block_status();
                 button_xoa.Visible = false;
             }
-            else if (status == 1)
+            else if (status == 1 && check_panel_inp())
             {
+                modelSinhVien = new SinhVien();
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
                     modelSinhVien.MaSV = 0;
@@ -153,7 +165,7 @@ namespace QLDiem
                     }
                 }
             }
-            else if (status == 2)
+            else if (status == 2 && check_exist_ob() && check_panel_inp())
             {
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
@@ -186,6 +198,7 @@ namespace QLDiem
                 button_them.Text = "Thêm";
                 button_sua.Text = "Sửa";
                 button_xoa.Visible = true;
+                clear();
                 block_status();
             }
             else
@@ -207,43 +220,47 @@ namespace QLDiem
 
         private void button_xoa_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc chắn xóa?", "Cảnh báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc chắn xóa?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
-                    var entry = modelQLD.Entry(modelSinhVien);
-                    if (entry.State == System.Data.Entity.EntityState.Detached)
-                        modelQLD.SinhViens.Attach(modelSinhVien);
-                    modelQLD.SinhViens.Remove(modelSinhVien);
-                    int eror = modelQLD.SaveChanges();
-                    if (eror == 1)
+                    if(check_exist_ob())
                     {
-                        loadDataToDgv();
-                        MessageBox.Show("Xóa thành công");
-                    }
-                    else
-                    {
-                        loadDataToDgv();
-                        MessageBox.Show("Xóa bị lỗi");
+                        var entry = modelQLD.Entry(modelSinhVien);
+                        if (entry.State == System.Data.Entity.EntityState.Detached)
+                            modelQLD.SinhViens.Attach(modelSinhVien);
+                        modelQLD.SinhViens.Remove(modelSinhVien);
+                        int eror = modelQLD.SaveChanges();
+                        if (eror == 1)
+                        {
+                            loadDataToDgv();
+                            clear();
+                            MessageBox.Show("Xóa thành công");
+                        }
+                        else
+                        {
+                            loadDataToDgv();
+                            MessageBox.Show("Xóa bị lỗi");
+                        }
                     }
                 }
 
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_thoat_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button1_MouseEnter(object sender, EventArgs e)
+        private void button_thoat_MouseEnter(object sender, EventArgs e)
         {
-            button1.ForeColor = Color.Red;
+            button_thoat.ForeColor = Color.Red;
         }
 
-        private void button1_MouseLeave(object sender, EventArgs e)
+        private void button_thoat_MouseLeave(object sender, EventArgs e)
         {
-            button1.ForeColor = Color.White;
+            button_thoat.ForeColor = Color.White;
         }
     }
 }

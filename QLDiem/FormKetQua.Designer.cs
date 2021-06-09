@@ -38,6 +38,7 @@ namespace QLDiem
             this.button_sua = new System.Windows.Forms.Button();
             this.button_them = new System.Windows.Forms.Button();
             this.panel_inp = new System.Windows.Forms.Panel();
+            this.label_status = new System.Windows.Forms.Label();
             this.comboBox_MaMH = new System.Windows.Forms.ComboBox();
             this.comboBox_MaSV = new System.Windows.Forms.ComboBox();
             this.textBox_Diem = new System.Windows.Forms.TextBox();
@@ -45,14 +46,14 @@ namespace QLDiem
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.MaSV = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.MaMH = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Diem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button_thoat = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel_inp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -111,22 +112,32 @@ namespace QLDiem
             // 
             // panel_inp
             // 
+            this.panel_inp.Controls.Add(this.label_status);
             this.panel_inp.Controls.Add(this.comboBox_MaMH);
             this.panel_inp.Controls.Add(this.comboBox_MaSV);
             this.panel_inp.Controls.Add(this.textBox_Diem);
             this.panel_inp.Controls.Add(this.label3);
             this.panel_inp.Controls.Add(this.label2);
             this.panel_inp.Controls.Add(this.label1);
-            this.panel_inp.Location = new System.Drawing.Point(35, 147);
+            this.panel_inp.Location = new System.Drawing.Point(35, 135);
             this.panel_inp.Name = "panel_inp";
-            this.panel_inp.Size = new System.Drawing.Size(413, 202);
+            this.panel_inp.Size = new System.Drawing.Size(413, 214);
             this.panel_inp.TabIndex = 8;
+            // 
+            // label_status
+            // 
+            this.label_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_status.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label_status.Location = new System.Drawing.Point(2, 15);
+            this.label_status.Name = "label_status";
+            this.label_status.Size = new System.Drawing.Size(65, 33);
+            this.label_status.TabIndex = 3;
             // 
             // comboBox_MaMH
             // 
             this.comboBox_MaMH.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_MaMH.FormattingEnabled = true;
-            this.comboBox_MaMH.Location = new System.Drawing.Point(175, 75);
+            this.comboBox_MaMH.Location = new System.Drawing.Point(175, 111);
             this.comboBox_MaMH.Name = "comboBox_MaMH";
             this.comboBox_MaMH.Size = new System.Drawing.Size(221, 28);
             this.comboBox_MaMH.TabIndex = 2;
@@ -135,7 +146,7 @@ namespace QLDiem
             // 
             this.comboBox_MaSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_MaSV.FormattingEnabled = true;
-            this.comboBox_MaSV.Location = new System.Drawing.Point(175, 16);
+            this.comboBox_MaSV.Location = new System.Drawing.Point(175, 52);
             this.comboBox_MaSV.Name = "comboBox_MaSV";
             this.comboBox_MaSV.Size = new System.Drawing.Size(221, 28);
             this.comboBox_MaSV.TabIndex = 2;
@@ -143,7 +154,7 @@ namespace QLDiem
             // textBox_Diem
             // 
             this.textBox_Diem.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Diem.Location = new System.Drawing.Point(175, 131);
+            this.textBox_Diem.Location = new System.Drawing.Point(175, 167);
             this.textBox_Diem.Name = "textBox_Diem";
             this.textBox_Diem.Size = new System.Drawing.Size(221, 27);
             this.textBox_Diem.TabIndex = 1;
@@ -152,7 +163,7 @@ namespace QLDiem
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label3.Location = new System.Drawing.Point(3, 131);
+            this.label3.Location = new System.Drawing.Point(3, 167);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(149, 23);
             this.label3.TabIndex = 0;
@@ -163,7 +174,7 @@ namespace QLDiem
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label2.Location = new System.Drawing.Point(3, 77);
+            this.label2.Location = new System.Drawing.Point(3, 113);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 23);
             this.label2.TabIndex = 0;
@@ -174,7 +185,7 @@ namespace QLDiem
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label1.Location = new System.Drawing.Point(3, 21);
+            this.label1.Location = new System.Drawing.Point(3, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 23);
             this.label1.TabIndex = 0;
@@ -208,63 +219,13 @@ namespace QLDiem
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowHeadersWidth = 25;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.RowTemplate.Height = 30;
             this.dataGridView2.Size = new System.Drawing.Size(562, 391);
             this.dataGridView2.TabIndex = 7;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1100, 60);
-            this.panel1.TabIndex = 10;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.pictureBox4.ErrorImage = null;
-            this.pictureBox4.Image = global::QLDiem.Properties.Resources.analysis2;
-            this.pictureBox4.InitialImage = null;
-            this.pictureBox4.Location = new System.Drawing.Point(35, 2);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(71, 55);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 12;
-            this.pictureBox4.TabStop = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(400, 10);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(325, 37);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "QUẢN LÝ KẾT QUẢ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label8.Location = new System.Drawing.Point(632, 86);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(262, 26);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "DANH SÁCH KẾT QUẢ";
             // 
             // MaSV
             // 
@@ -294,24 +255,74 @@ namespace QLDiem
             this.Diem.MinimumWidth = 6;
             this.Diem.Name = "Diem";
             // 
-            // button1
+            // panel1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Window;
-            this.button1.Location = new System.Drawing.Point(1068, -6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 38);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
-            this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
+            this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel1.Controls.Add(this.button_thoat);
+            this.panel1.Controls.Add(this.pictureBox4);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1100, 60);
+            this.panel1.TabIndex = 10;
+            // 
+            // button_thoat
+            // 
+            this.button_thoat.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.button_thoat.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_thoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_thoat.ForeColor = System.Drawing.SystemColors.Window;
+            this.button_thoat.Location = new System.Drawing.Point(1068, -6);
+            this.button_thoat.Name = "button_thoat";
+            this.button_thoat.Size = new System.Drawing.Size(33, 38);
+            this.button_thoat.TabIndex = 13;
+            this.button_thoat.Text = "X";
+            this.button_thoat.UseVisualStyleBackColor = false;
+            this.button_thoat.Click += new System.EventHandler(this.button_thoat_Click);
+            this.button_thoat.MouseEnter += new System.EventHandler(this.button_thoat_MouseEnter);
+            this.button_thoat.MouseLeave += new System.EventHandler(this.button_thoat_MouseLeave);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.pictureBox4.ErrorImage = null;
+            this.pictureBox4.Image = global::QLDiem.Properties.Resources.analysis2;
+            this.pictureBox4.InitialImage = null;
+            this.pictureBox4.Location = new System.Drawing.Point(35, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(71, 55);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 12;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(400, 10);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(325, 37);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "QUẢN LÝ KẾT QUẢ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label8.Location = new System.Drawing.Point(632, 86);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(262, 26);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "DANH SÁCH KẾT QUẢ";
             // 
             // FormKetQua
             // 
@@ -362,6 +373,7 @@ namespace QLDiem
         private System.Windows.Forms.DataGridViewComboBoxColumn MaSV;
         private System.Windows.Forms.DataGridViewComboBoxColumn MaMH;
         private System.Windows.Forms.DataGridViewTextBoxColumn Diem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_thoat;
+        private System.Windows.Forms.Label label_status;
     }
 }

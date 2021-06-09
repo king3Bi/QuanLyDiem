@@ -23,27 +23,17 @@ namespace QLDiem
 
         private void FormKetQua_Load(object sender, EventArgs e)
         {
-            loadData();
-            panel_inp.Enabled = false;
+            loadDataToCmb();
+            loadDataToDgv();
+            block_status();
+            clear();
         }
 
-        private void loadData()
+        private void loadDataToDgv()
         {
             dataGridView2.AutoGenerateColumns = false;
             using (ModelQLD modelQLD = new ModelQLD())
             {
-                comboBox_MaSV.DisplayMember = "HoVaTen";
-                comboBox_MaSV.ValueMember = "MaSV";
-                comboBox_MaSV.DataSource = modelQLD.SinhViens.ToList();
-                comboBox_MaSV.SelectedIndex = -1;
-
-                comboBox_MaMH.DisplayMember = "TenMH";
-                comboBox_MaMH.ValueMember = "MaMH";
-                comboBox_MaMH.DataSource = modelQLD.MonHocs.ToList();
-                comboBox_MaMH.SelectedIndex = -1;
-
-                textBox_Diem.Text = "";
-
                 dataGridView2.DataSource = modelQLD.KetQuas.ToList();
 
                 (dataGridView2.Columns["MaSV"] as DataGridViewComboBoxColumn).DisplayMember = "HoVaTen";
@@ -56,9 +46,40 @@ namespace QLDiem
             }
         }
 
-        private void button_thoat_Click(object sender, EventArgs e)
+        private void loadDataToCmb()
         {
-            this.Close();
+            using (ModelQLD modelQLD = new ModelQLD())
+            {
+                comboBox_MaSV.DisplayMember = "HoVaTen";
+                comboBox_MaSV.ValueMember = "MaSV";
+                comboBox_MaSV.DataSource = modelQLD.SinhViens.ToList();
+                comboBox_MaSV.SelectedIndex = -1;
+
+                comboBox_MaMH.DisplayMember = "TenMH";
+                comboBox_MaMH.ValueMember = "MaMH";
+                comboBox_MaMH.DataSource = modelQLD.MonHocs.ToList();
+                comboBox_MaMH.SelectedIndex = -1;
+            }
+        }
+
+        // Khóa panel inp không cho nhập dữ liệu
+        private void block_status()
+        {
+            panel_inp.Enabled = false;
+        }
+
+        // Mở khóa panel inp
+        private void un_block_status()
+        {
+            panel_inp.Enabled = true;
+        }
+
+        // Xóa các dữ liệu trên panel_inp
+        private void clear()
+        {
+            textBox_Diem.Text = "";
+            comboBox_MaSV.SelectedIndex = comboBox_MaMH.SelectedIndex = -1;
+            modelKetQua = null;
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -70,29 +91,53 @@ namespace QLDiem
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
                     modelKetQua = modelQLD.KetQuas.Where(x => (x.MaSV == ID_SV && x.MaMH == ID_MH)).FirstOrDefault();
-                    comboBox_MaSV.SelectedValue = modelKetQua.MaSV;
-                    comboBox_MaMH.SelectedValue = modelKetQua.MaMH;
-                    textBox_Diem.Text = modelKetQua.Diem.ToString();
+                    dataBindingPanel_inp();
                 }
             }
         }
 
+        private void dataBindingPanel_inp()
+        {
+            comboBox_MaSV.SelectedValue = modelKetQua.MaSV;
+            comboBox_MaMH.SelectedValue = modelKetQua.MaMH;
+            textBox_Diem.Text = modelKetQua.Diem.ToString();
+        }
+
+        private bool check_panel_inp()
+        {
+            if (comboBox_MaSV.SelectedIndex!=-1 &&
+                comboBox_MaMH.SelectedIndex!=-1 &&
+                textBox_Diem.Text!="")
+            {
+                return true;
+            }
+            MessageBox.Show("Nhập thiếu dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
+        private bool check_exist_ob()
+        {
+            if (modelKetQua != null)
+            {
+                return true;
+            }
+            MessageBox.Show("Chưa có đối tượng dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
         private void button_them_Click(object sender, EventArgs e)
         {
-            if (panel_inp.Enabled == false)
-            {
-                panel_inp.Enabled = true;
-            }
-
             if (status == 0)
             {
                 status = 1;
-                textBox_Diem.Text = "";
+                label_status.Text = "Thêm";
+                clear();
                 button_them.Text = "Lưu";
                 button_sua.Text = "Hủy";
+                un_block_status();
                 button_xoa.Visible = false;
             }
-            else if (status == 1)
+            else if (status == 1 && check_panel_inp())
             {
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
@@ -103,17 +148,17 @@ namespace QLDiem
                     int eror = modelQLD.SaveChanges();
                     if (eror == 1)
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Thêm thành công");
                     }
                     else
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Thêm bị lỗi");
                     }
                 }
             }
-            else if (status == 2)
+            else if (status == 2 && check_exist_ob() && check_panel_inp())
             {
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
@@ -122,12 +167,12 @@ namespace QLDiem
                     int eror = modelQLD.SaveChanges();
                     if (eror == 1)
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Sửa thành công");
                     }
                     else
                     {
-                        loadData();
+                        loadDataToDgv();
                         MessageBox.Show("Sửa bị lỗi");
                     }
                 }
@@ -139,71 +184,72 @@ namespace QLDiem
             if (status == 1 || status == 2)
             {
                 status = 0;
+                label_status.Text = "";
                 comboBox_MaSV.Enabled = true;
                 comboBox_MaMH.Enabled = true;
                 button_them.Text = "Thêm";
                 button_sua.Text = "Sửa";
                 button_xoa.Visible = true;
-                if (panel_inp.Enabled == true)
-                {
-                    panel_inp.Enabled = false;
-                }
+                clear();
+                block_status();
             }
             else if (status == 0)
             {
                 status = 2;
+                label_status.Text = "Sửa";
                 comboBox_MaSV.Enabled = false;
                 comboBox_MaMH.Enabled = false;
                 button_them.Text = "Lưu";
                 button_sua.Text = "Hủy";
                 button_xoa.Visible = false;
 
-                if (panel_inp.Enabled == false)
-                {
-                    panel_inp.Enabled = true;
-                }
+                un_block_status();
             }
         }
 
         private void button_xoa_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc chắn xóa?", "Cảnh báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc chắn xóa?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
-                    var entry = modelQLD.Entry(modelKetQua);
-                    if (entry.State == System.Data.Entity.EntityState.Detached)
-                        modelQLD.KetQuas.Attach(modelKetQua);
-                    modelQLD.KetQuas.Remove(modelKetQua);
-                    int eror = modelQLD.SaveChanges();
-                    if (eror == 1)
+                    if(check_exist_ob())
                     {
-                        loadData();
-                        MessageBox.Show("Xóa thành công");
-                    }
-                    else
-                    {
-                        loadData();
-                        MessageBox.Show("Xóa bị lỗi");
+                        var entry = modelQLD.Entry(modelKetQua);
+                        if (entry.State == System.Data.Entity.EntityState.Detached)
+                            modelQLD.KetQuas.Attach(modelKetQua);
+                        modelQLD.KetQuas.Remove(modelKetQua);
+                        int eror = modelQLD.SaveChanges();
+                        if (eror == 1)
+                        {
+                            loadDataToDgv();
+                            clear();
+                            MessageBox.Show("Xóa thành công");
+                        }
+                        else
+                        {
+                            loadDataToDgv();
+                            MessageBox.Show("Xóa bị lỗi");
+                        }
                     }
                 }
 
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_thoat_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button1_MouseEnter(object sender, EventArgs e)
+        private void button_thoat_MouseEnter(object sender, EventArgs e)
         {
-            button1.ForeColor = Color.Red;
+            button_thoat.ForeColor = Color.Red;
         }
 
-        private void button1_MouseLeave(object sender, EventArgs e)
+        private void button_thoat_MouseLeave(object sender, EventArgs e)
         {
-            button1.ForeColor = Color.White;
+            button_thoat.ForeColor = Color.White;
         }
     }
 }
