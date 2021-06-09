@@ -14,8 +14,11 @@ namespace QLDiem
 {
     public partial class FormKhoa : Form
     {
+        // Tạo một object để lưu dữ liệu tạm
         Khoa modelKhoa = new Khoa();
-        int status = 0;
+
+        // biến satatus lưu giữ trạng thái làm việc: thêm(1), sửa(2)
+        int status = 0; // 0 là trạng thái ban đầu
 
         public FormKhoa()
         {
@@ -24,12 +27,20 @@ namespace QLDiem
 
         private void FormKhoa_Load(object sender, EventArgs e)
         {
+            // Load dữ liệu vào dataGridView khi form load
             loadData();
+
+            // Khóa panel_inp
             block_status();
+
+            // Mặc định MaK không thể sửa
             textBox_MaK.Enabled = false;
+
+            // Xóa các dữ liệu trên panel_inp và object lưu dữ liệu tạm
             clear();
         }
 
+        // Load dữ liệu vào dataGridView
         private void loadData()
         {
             dataGridView1.AutoGenerateColumns = false;
@@ -39,6 +50,7 @@ namespace QLDiem
             }
         }
 
+        // Đưa dữ liệu từ object lưu dữ liệu vào trong panel_inp
         private void dataBindingPanel_inp()
         {
             if (status == 1)
@@ -52,6 +64,7 @@ namespace QLDiem
             textBox_TenKhoa.Text = modelKhoa.TenKhoa.ToString();
         }
 
+        // Kiểm tra các inp có dữ liệu hết chưa
         private bool check_panel_inp()
         {
             if(textBox_TenKhoa.Text!="")
@@ -62,6 +75,7 @@ namespace QLDiem
             return false;
         }
 
+        // Kiểm tra object được tạo chưa
         private bool check_exist_ob()
         {
             if(modelKhoa!=null)
@@ -84,12 +98,14 @@ namespace QLDiem
             panel_inp.Enabled = true;
         }
 
+        // Xóa các dữ liệu trên panel_inp và object lưu dữ liệu tạm
         private void clear()
         {
             textBox_MaK.Text = textBox_TenKhoa.Text = "";
             modelKhoa = null;
         }
 
+        // Sự kiện click vào một dòng trong dataGridView
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(dataGridView1.CurrentRow.Index!=-1)
@@ -103,10 +119,13 @@ namespace QLDiem
             }
         }
 
+        // Sự kiện click button thêm
         private void button_them_Click(object sender, EventArgs e)
         {
+            // Nếu ở trang thái ban đầu
             if(status==0)
             {
+                // cập nhật trạng thái về trạng thái thêm
                 status = 1;
                 clear();
                 label_status.Text = "Thêm";
@@ -115,8 +134,11 @@ namespace QLDiem
                 un_block_status();
                 button_xoa.Visible = false;
             }
+
+            // Nếu ở trạng thái thêm
             else if(status==1 && check_panel_inp())
             {
+                // thực hiện insert dữ liệu lên database
                 modelKhoa = new Khoa();
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
@@ -124,11 +146,15 @@ namespace QLDiem
                     modelKhoa.MaK = 0;
                     modelQLD.Khoas.Add(modelKhoa);
                     int eror = modelQLD.SaveChanges();
+
+                    // Thêm thành công
                     if(eror==1)
                     {
                         loadData();
                         MessageBox.Show("Thêm thành công");
                     }
+
+                    // Thêm bị lỗi
                     else
                     {
                         loadData();
@@ -136,8 +162,11 @@ namespace QLDiem
                     }
                 }
             }
+
+            // Nếu ở trạng thái sửa
             else if(status==2 && check_exist_ob() && check_panel_inp())
             {
+                // Thực hiện update dữ liệu lên database
                 using (ModelQLD modelQLD=new ModelQLD())
                 {
                     modelKhoa.TenKhoa = textBox_TenKhoa.Text.Trim().ToString();

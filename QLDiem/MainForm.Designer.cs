@@ -35,7 +35,7 @@ namespace QLDiem
             this.button_MonHoc = new System.Windows.Forms.Button();
             this.button_formKetQua = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_thoat = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -104,7 +104,7 @@ namespace QLDiem
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button_thoat);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(-1, -3);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -112,24 +112,24 @@ namespace QLDiem
             this.panel1.Size = new System.Drawing.Size(801, 189);
             this.panel1.TabIndex = 1;
             // 
-            // button1
+            // button_thoat
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Menu;
-            this.button1.Location = new System.Drawing.Point(770, -4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 38);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
-            this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
+            this.button_thoat.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.button_thoat.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button_thoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_thoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_thoat.ForeColor = System.Drawing.SystemColors.Menu;
+            this.button_thoat.Location = new System.Drawing.Point(770, -4);
+            this.button_thoat.Name = "button_thoat";
+            this.button_thoat.Size = new System.Drawing.Size(33, 38);
+            this.button_thoat.TabIndex = 2;
+            this.button_thoat.Text = "X";
+            this.button_thoat.UseVisualStyleBackColor = false;
+            this.button_thoat.Click += new System.EventHandler(this.button_thoat_Click);
+            this.button_thoat.MouseEnter += new System.EventHandler(this.button_thoat_MouseEnter);
+            this.button_thoat.MouseLeave += new System.EventHandler(this.button_thoat_MouseLeave);
             // 
             // label2
             // 
@@ -237,7 +237,7 @@ namespace QLDiem
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_thoat;
     }
 }
 

@@ -22,45 +22,65 @@ namespace QLDiem
         // Mở form khoa
         private void button_formKhoa_Click(object sender, EventArgs e)
         {
+            // Ẩn của sổ hiện tại
             this.Hide();
+
+            // Tạo mới một formKhoa
             FormKhoa formKhoa = new FormKhoa();
+
+            // Hiển thị formKhoa ra màn hình
             formKhoa.ShowDialog();
+
+            // Sau khi thoát khỏi formKhoa, hiện lại MainForm
             this.Show();
         }
 
         // Mở form sinh viên
         private void button_formSinhVien_Click(object sender, EventArgs e)
         {
+            // Ẩn của sổ hiện tại
             this.Hide();
+
+            // Tạo mới một formSinhVien
             FormSinhVien formSinhVien = new FormSinhVien();
+
+            // Hiển thị formSinhVien ra màn hình
             formSinhVien.ShowDialog();
+
+            // Sau khi thoát khỏi formKhoa, hiện lại MainForm
             this.Show();
         }
 
         // Mở form môn học
         private void button_MonHoc_Click(object sender, EventArgs e)
         {
+            // Ẩn của sổ hiện tại
             this.Hide();
+
+            // Tạo mới một formMonHoc
             FormMonHoc formMonHoc = new FormMonHoc();
+
+            // Hiển thị formMonHoc ra màn hình
             formMonHoc.ShowDialog();
+
+            // Sau khi thoát khỏi formKhoa, hiện lại MainForm
             this.Show();
         }
 
         // Mở form kết quả
         private void button_formKetQua_Click(object sender, EventArgs e)
         {
+            // Ẩn của sổ hiện tại
             this.Hide();
-            FormKetQua formKetQua = new FormKetQua();
-            formKetQua.ShowDialog();
-            this.Show();
-        }
 
-        // Thoát
-        private void label1_Click(object sender, EventArgs e)
-        {
-            //label1.BackColor = Color.Red;
-            //Thread.Sleep(1000);
-            //this.Close();
+            // Tạo mới một formKetQua
+            FormKetQua formKetQua = new FormKetQua();
+
+            // Hiển thị formKetQua ra màn hình
+            formKetQua.ShowDialog();
+
+            // Sau khi thoát khỏi formKhoa, hiện lại MainForm
+            this.Show();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -75,17 +95,20 @@ namespace QLDiem
             }
         }
 
-        private void button1_MouseEnter(object sender, EventArgs e)
+        // Đóng ứng dụng
+        private void button_thoat_MouseEnter(object sender, EventArgs e)
         {
-            button1.ForeColor = Color.Red;
+            button_thoat.ForeColor = Color.Red;
         }
 
-        private void button1_MouseLeave(object sender, EventArgs e)
+        // Khi con trỏ chuột ở trên button
+        private void button_thoat_MouseLeave(object sender, EventArgs e)
         {
-            button1.ForeColor = Color.White;
+            button_thoat.ForeColor = Color.White;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Khi con trỏ chuột rời khỏi button
+        private void button_thoat_Click(object sender, EventArgs e)
         {
             this.Close();
         }
