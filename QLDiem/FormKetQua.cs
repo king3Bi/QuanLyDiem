@@ -165,6 +165,8 @@ namespace QLDiem
                 // thực hiện insert dữ liệu lên database
 
                 // tạo mới một object Khoa
+                modelKetQua = new KetQua();
+
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
                     // Gán dữ liệu cho object

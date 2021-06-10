@@ -144,6 +144,7 @@ namespace QLDiem
 
                 // tạo mới một object Khoa
                 modelMonHoc = new MonHoc();
+
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
                     // Gán dữ liệu cho object

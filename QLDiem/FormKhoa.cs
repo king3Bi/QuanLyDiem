@@ -145,7 +145,6 @@ namespace QLDiem
                 // tạo mới một object Khoa
                 modelKhoa = new Khoa();
 
-
                 using (ModelQLD modelQLD = new ModelQLD())
                 {
                     // Gán dữ liệu cho object
